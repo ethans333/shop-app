@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: shop-app
+  template:
+    metadata:
+      labels:
+        app: shop-app
+    spec:
+      containers:
+        - name: shop-app-api
+          image: shop-app/api:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80

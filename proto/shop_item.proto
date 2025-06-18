@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package shop;
+
+message ShopItem {
+    uint32 id = 1;
+    string name = 2;
+    string description = 3;
+    double price = 4;
+    uint32 quantity_available = 5;
+    repeated string tags = 6;
+    string image_url = 7;
+}
