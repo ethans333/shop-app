@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migration-job
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      containers:
+        - name: diesel-migrate
+          image: ethans333/shop-app_migrator:latest
+          env:
+            - name: DATABASE_URL
+              value: postgres://user:password@postgres:5432/shopdb
+      restartPolicy: Never

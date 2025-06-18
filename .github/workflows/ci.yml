@@ -22,10 +22,18 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Docker image
+      - name: Build api
         uses: docker/build-push-action@v5
         with:
           context: ./backend/api
           file: ./backend/api/Dockerfile
           push: true
           tags: ethans333/shop-app_api:latest
+
+      - name: Build migrator
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend/migrator
+          file: ./backend/migrator/Dockerfile
+          push: true
+          tags: ethans333/shop-app_migrator:latest
