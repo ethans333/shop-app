@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: shop-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: shop-app
@@ -14,7 +14,10 @@ spec:
     spec:
       containers:
         - name: shop-app-api
-          image: shop-app/api:latest
+          image: ethans333/shop-app_api:latest
           imagePullPolicy: Never
+          env:
+            - name: DATABASE_URL
+              value: postgres://user:password@postgres:5432/shopdb
           ports:
-            - containerPort: 80
+            - containerPort: 8080
